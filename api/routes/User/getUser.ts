@@ -4,7 +4,21 @@ import { z } from "zod";
 
 export async function GetUser(fastify: FastifyInstance) {
     fastify.get('/users', async () => {
-        const users = await prisma.user.findMany()
+        const users = await prisma.user.findMany({
+            select: {
+                id: true,
+                Name: true,
+                Branch: true,
+                Adm: true,
+                config: {
+                    select: {
+                        id: true,
+                        Color: true,
+                        Ring: true
+                    }
+                }
+            }
+        })
 
         return { users }
     })
