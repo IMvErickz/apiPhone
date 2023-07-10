@@ -39,6 +39,7 @@ export async function GetUser(fastify: FastifyInstance) {
                 id: true,
                 Name: true,
                 Branch: true,
+                Password: true,
                 config: {
                     select: {
                         Color: true,

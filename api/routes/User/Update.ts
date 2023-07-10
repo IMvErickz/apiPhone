@@ -14,10 +14,11 @@ export async function UpdateUser(fastify: FastifyInstance) {
         const updateSchema = z.object({
             Name: z.string(),
             Adm: z.boolean(),
-            Branch: z.number()
+            Branch: z.number(),
+            Password: z.string()
         })
 
-        const { Adm, Branch, Name } = updateSchema.parse(request.body)
+        const { Adm, Branch, Name, Password } = updateSchema.parse(request.body)
 
         try {
             await prisma.user.update({
@@ -28,6 +29,7 @@ export async function UpdateUser(fastify: FastifyInstance) {
                     Name,
                     Adm,
                     Branch,
+                    Password
                 }
             })
         } catch (err) {
