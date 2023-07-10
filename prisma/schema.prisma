@@ -18,6 +18,10 @@ model User {
   Password String
 
   config Config[]
+
+  contacts Contacts[]
+
+  calls Calls[]
 }
 
 model Config {
@@ -25,5 +29,20 @@ model Config {
   Color  String
   Ring   String
   User   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String?
+}
+
+model Contacts {
+  id     String @id @default(uuid())
+  Name   String
+  Number Int
+
+  user User[]
+}
+
+model Calls {
+  id     String  @id @default(uuid())
+  Number String
+  User   User?   @relation(fields: [userId], references: [id])
   userId String?
 }
