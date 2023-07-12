@@ -16,6 +16,7 @@ model User {
   Branch   Int
   Adm      Boolean
   Password String
+  Host     String
 
   config Config[]
 

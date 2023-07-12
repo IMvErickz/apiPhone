@@ -31,7 +31,7 @@ export async function GetUser(fastify: FastifyInstance) {
 
         const { id } = userId.parse(request.params)
 
-        const users = await prisma.user.findUnique({
+        const user = await prisma.user.findMany({
             where: {
                 id
             },
@@ -50,6 +50,6 @@ export async function GetUser(fastify: FastifyInstance) {
             }
         })
 
-        return { users }
+        return { user }
     })
 }

@@ -10,10 +10,11 @@ export async function RegisterUser(fastify: FastifyInstance) {
             Name: z.string(),
             Branch: z.number(),
             Adm: z.boolean(),
-            Password: z.string()
+            Password: z.string(),
+            Host: z.string()
         })
 
-        const { Name, Branch, Adm, Password } = userSchema.parse(request.body)
+        const { Name, Branch, Adm, Password, Host } = userSchema.parse(request.body)
 
         try {
             await prisma.user.create({
@@ -23,10 +24,11 @@ export async function RegisterUser(fastify: FastifyInstance) {
                     Branch,
                     Adm,
                     Password,
+                    Host,
                     config: {
                         create: {
                             id: randomUUID(),
-                            Color: '#18181b',
+                            Color: '#27272a',
                             Ring: 'padrao'
                         }
                     }
